@@ -17,9 +17,7 @@ class Dojo:
 # crud method: create
     @classmethod
     def save_dojos(cls, data):
-        query = """ 
-            INSERT INTO dojos
-            (name)
+        query = """ INSERT INTO dojos (name)
             VALUES (%(name)s);
         """
         return connectToMySQL(cls.db).query_db(query,data)
@@ -28,9 +26,7 @@ class Dojo:
 # crud method: read
     @classmethod 
     def get_all_dojos(cls):
-        query = """ 
-            SELECT * FROM dojos;
-        """
+        query = """ SELECT * FROM dojos; """
         
         results = connectToMySQL(cls.db).query_db(query)
         
@@ -43,8 +39,7 @@ class Dojo:
 #  get one dojo with ninjas
     @classmethod 
     def get_ninjas_with_dojo(cls, data):
-        query = """ 
-            SELECT * FROM dojos
+        query = """ SELECT * FROM dojos
             JOIN ninjas ON ninjas.dojo_id = dojos.id
             WHERE dojos.id = %(id)s;
         """
